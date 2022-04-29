@@ -1,16 +1,25 @@
 # Appgain Movies Task
 
-A new Flutter application.
+A flutter movies application.
 
 ## Getting Started
 
-This project is a starting point for a Flutter application.
+### This project supports three features:
+#### 1. Fetching movies from TMDB API.
+#### 2. Featuring Deep Links.
+#### 3. Featuring Push Notifications from Firebase.
 
-A few resources to get you started if this is your first Flutter project:
+### How it works:
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
+#### 1. Deep Links:
+- You can use deep links by opening android studio while connecting your phone or using emulator.
+- Then use this command: 
+adb shell am start movieapptask://open
+- There are two deep links in this app:
+  1. movieapptask://open
+  2. movieapptask://details_screen/movie_id (ex: movie_id = 335787)
 
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+#### 2. Firebase Push Notifications:
+- You can push notifications directly from Firebase Messaging tap.
+- Use "Send Test Message" for high priority messages.
+- Use the token given in the debug apk logs to send a test message.
