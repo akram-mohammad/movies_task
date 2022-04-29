@@ -1,10 +1,11 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:iti_movies/ui/ListScreen/list_screen_provider.dart';
 import 'package:provider/provider.dart';
+import 'package:smooth_star_rating_null_safety/smooth_star_rating_null_safety.dart';
 import '../DetailScreen/details_screen.dart';
-import 'package:smooth_star_rating/smooth_star_rating.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class ListScreen extends StatefulWidget {
@@ -22,21 +23,17 @@ class _ListScreenState extends State<ListScreen> {
     SharedPreferences preferences = await SharedPreferences.getInstance();
     if (preferences.getStringList('saved') == null) {
       preferences.setStringList('saved', []);
-      debugPrint('yes');
     } else {
-      _saved = preferences.getStringList('saved');
-      _fav = preferences.getStringList('saved').length;
-      debugPrint('nope');
+      _saved = preferences.getStringList('saved') ?? [];
+      _fav = preferences.getStringList('saved')!.length;
       debugPrint(_fav.toString());
     }
-    debugPrint('start');
   }
 
   Future<void> changePrefs() async {
     SharedPreferences preferences = await SharedPreferences.getInstance();
     preferences.setStringList('saved', _saved);
     _fav = _saved.length;
-    debugPrint('continue');
   }
 
   @override
@@ -46,7 +43,7 @@ class _ListScreenState extends State<ListScreen> {
       create: (context) => MoviesProvider(),
       child: Consumer<MoviesProvider>(
         builder: (buildContext, movieProvider, _) {
-          debugPrint('hi4');
+          debugPrint('building movies');
           return (movieProvider.movies != null)
               ? Scaffold(
                   appBar: AppBar(
@@ -67,8 +64,7 @@ class _ListScreenState extends State<ListScreen> {
                     itemCount: movieProvider.movies.length,
                     itemBuilder: (ctx, index) {
                       final movie = movieProvider.movies[index];
-                      final alreadySaved =
-                          _saved?.contains(movie.title) ?? false;
+                      final alreadySaved = _saved.contains(movie.title);
                       return LayoutBuilder(
                         builder: (ctx, constraints) {
                           return Container(
@@ -127,13 +123,13 @@ class _ListScreenState extends State<ListScreen> {
                                             ),
                                             SmoothStarRating(
                                                 allowHalfRating: true,
-                                                onRated: (v) {},
+                                                onRatingChanged: (v) {},
                                                 starCount: 10,
-                                                rating: movie.voteAverage,
+                                                rating:
+                                                    movie.voteAverage ?? 0.0,
                                                 size: constraints.maxWidth > 600
                                                     ? 22
                                                     : 15,
-                                                isReadOnly: true,
                                                 filledIconData: Icons.star_rate,
                                                 halfFilledIconData:
                                                     Icons.star_half,
@@ -169,7 +165,7 @@ class _ListScreenState extends State<ListScreen> {
                                           if (alreadySaved) {
                                             _saved.remove(movie.title);
                                           } else {
-                                            _saved.add(movie.title);
+                                            _saved.add(movie.title!);
                                           }
                                         });
                                         changePrefs();
@@ -198,8 +194,14 @@ class _ListScreenState extends State<ListScreen> {
                     },
                   ),
                 )
-              : Center(
-                  child: CircularProgressIndicator(),
+              : Scaffold(
+                  appBar: AppBar(
+                    leading: null,
+                  ),
+                  backgroundColor: Colors.grey[100],
+                  body: Center(
+                    child: CircularProgressIndicator(),
+                  ),
                 );
         },
       ),

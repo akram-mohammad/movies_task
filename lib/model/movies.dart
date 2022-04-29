@@ -33,29 +33,29 @@ class Movie {
     this.tagline,
   });
   bool isfav = false;
-  bool adult;
-  String backdropPath;
-  List<int> genreIds;
-  int id;
-  String originalLanguage;
-  String originalTitle;
-  String overview;
-  double popularity;
-  String posterPath;
-  String releaseDate;
-  String title;
-  bool video;
-  double voteAverage;
-  int voteCount;
+  bool? adult;
+  String? backdropPath;
+  List<int>? genreIds;
+  int? id;
+  String? originalLanguage;
+  String? originalTitle;
+  String? overview;
+  double? popularity;
+  String? posterPath;
+  String? releaseDate;
+  String? title;
+  bool? video;
+  double? voteAverage;
+  int? voteCount;
   dynamic belongsToCollection;
-  int budget;
-  List<Genre> genres;
-  String homepage;
-  String imdbId;
-  int revenue;
-  int runtime;
-  String status;
-  String tagline;
+  int? budget;
+  List<Genre>? genres;
+  String? homepage;
+  String? imdbId;
+  int? revenue;
+  int? runtime;
+  String? status;
+  String? tagline;
 
   factory Movie.fromJson(Map<String, dynamic> json) => Movie(
         adult: json["adult"],
@@ -102,7 +102,7 @@ class Movie {
   Map<String, dynamic> toJson() => {
         "adult": adult,
         "backdrop_path": backdropPath,
-        "genre_ids": List<dynamic>.from(genreIds.map((x) => x)),
+        "genre_ids": List<dynamic>.from(genreIds!.map((x) => x)),
         "id": id,
         "original_language": originalLanguage,
         "original_title": originalTitle,
@@ -141,8 +141,8 @@ class Genre {
     this.name,
   });
 
-  int id;
-  String name;
+  int? id;
+  String? name;
 
   factory Genre.fromJson(Map<String, dynamic> json) => Genre(
         id: json["id"],

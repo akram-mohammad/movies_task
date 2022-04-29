@@ -1,21 +1,21 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:smooth_star_rating/smooth_star_rating.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:smooth_star_rating_null_safety/smooth_star_rating_null_safety.dart';
 import 'details_screen_provider.dart';
 
 class DetailScreen extends StatefulWidget {
   final id;
-  final index;
+  int index;
   final movie;
   final saved;
   bool isDeepLinked;
   DetailScreen(
-      {Key key,
+      {Key? key,
       this.id,
-      this.index,
+      this.index = 0,
       this.movie,
       this.saved,
       this.isDeepLinked = false})
@@ -29,7 +29,7 @@ class _DetailScreenState extends State<DetailScreen> {
   Future<void> changePrefs() async {
     SharedPreferences preferences = await SharedPreferences.getInstance();
     preferences.setStringList('saved', widget.saved);
-    debugPrint('detail continue');
+    debugPrint('details prefs');
   }
 
   @override
@@ -90,8 +90,8 @@ class _DetailScreenState extends State<DetailScreen> {
                                     fit: BoxFit.fitWidth,
                                     imageUrl:
                                         'https://image.tmdb.org/t/p/w500${movie.posterPath}',
-                                    placeholder: (context, url) =>
-                                        CircularProgressIndicator(),
+                                    placeholder: (context, url) => Center(
+                                        child: CircularProgressIndicator()),
                                     errorWidget: (context, url, error) =>
                                         Icon(Icons.error),
                                   ),
@@ -122,13 +122,12 @@ class _DetailScreenState extends State<DetailScreen> {
                                     ),
                                     SmoothStarRating(
                                         allowHalfRating: true,
-                                        onRated: (v) {},
+                                        onRatingChanged: (v) {},
                                         starCount: 10,
                                         rating: movie.voteAverage,
                                         size: constraints.maxWidth > 600
                                             ? 25.0
                                             : 20.0,
-                                        isReadOnly: true,
                                         filledIconData: Icons.star_rate,
                                         halfFilledIconData: Icons.star_half,
                                         color: Colors.orangeAccent,

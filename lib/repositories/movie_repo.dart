@@ -7,7 +7,7 @@ import 'package:iti_movies/services/movie_services.dart';
 class MovieRepository {
   MovieService _movieService = MovieService();
   Future<List<Movie>> fetchMovies() async {
-    debugPrint('hello from connectivity');
+    debugPrint('testing connectivity');
     var connectivityResult = await (Connectivity().checkConnectivity());
     final dbHelper = DbHelper.instance;
     if (connectivityResult == ConnectivityResult.none) {

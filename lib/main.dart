@@ -1,12 +1,34 @@
+import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:iti_movies/blocs/deeplink_bloc.dart';
 import 'package:iti_movies/ui/DetailScreen/details_screen.dart';
 import 'package:iti_movies/ui/ListScreen/list_screen.dart';
+import 'package:iti_movies/ui/SplashScreen/splash_screen.dart';
 import 'package:provider/provider.dart';
 
-void main() {
+Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
+  debugPrint('Handling a background message ${message.messageId}');
+  debugPrint(message.notification!.title);
+  debugPrint(message.notification!.body);
+}
+
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
+  FirebaseMessaging.onBackgroundMessage(_firebaseMessagingBackgroundHandler);
+
+  SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
+    statusBarColor: Colors.transparent,
+  ));
+  SystemChrome.setPreferredOrientations([
+    DeviceOrientation.portraitUp,
+    DeviceOrientation.portraitDown,
+  ]);
+
   runApp(
     BlocProvider(
       create: (context) => DeepLinkBloc(),
@@ -23,20 +45,12 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: MyHomePage(title: 'Movies'),
+      home: MyHomePage(),
     );
   }
 }
 
-class MyHomePage extends StatefulWidget {
-  MyHomePage({Key key, this.title}) : super(key: key);
-  final String title;
-
-  @override
-  _MyHomePageState createState() => _MyHomePageState();
-}
-
-class _MyHomePageState extends State<MyHomePage> {
+class MyHomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     DeepLinkBloc _bloc = Provider.of<DeepLinkBloc>(context);
@@ -45,12 +59,12 @@ class _MyHomePageState extends State<MyHomePage> {
         builder: (context, snapshot) {
           if (!snapshot.hasData) {
             return Scaffold(
-              body: ListScreen(),
+              body: SplashScreen(),
             );
           } else {
             debugPrint("The Link Used : ${snapshot.data}");
             final List<String> _params =
-                snapshot.data.split('//')[1].split('/');
+                snapshot.data!.split('//')[1].split('/');
             debugPrint("Params : ${_params.toString()}");
             if (_params[0] == "details_screen") {
               return Scaffold(
@@ -61,7 +75,7 @@ class _MyHomePageState extends State<MyHomePage> {
               );
             } else {
               return Scaffold(
-                body: ListScreen(),
+                body: SplashScreen(),
               );
             }
           }

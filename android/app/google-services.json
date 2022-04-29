@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "769355113025",
+    "project_id": "moviestask-5d584",
+    "storage_bucket": "moviestask-5d584.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:769355113025:android:d7222c406013943dd31cc0",
+        "android_client_info": {
+          "package_name": "com.example.iti_movies"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "769355113025-qa7vvsboak8t46l34skucmffodsp7r00.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCar-2hDOrrl5OIdVtYShq67YUd1t4rcFM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "769355113025-qa7vvsboak8t46l34skucmffodsp7r00.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

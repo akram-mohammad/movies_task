@@ -14,7 +14,7 @@ class MovieProvider extends ChangeNotifier {
   void _getMovie(id, index) {
     _movieRepository.fetchMovie(id, index).then((newMovie) {
       movie = newMovie;
-      debugPrint('hi3');
+      debugPrint('provider fetching movie details');
       notifyListeners();
     });
   }

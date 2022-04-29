@@ -37,31 +37,31 @@ class Mov {
     this.voteCount,
   });
 
-  bool adult;
-  String backdropPath;
+  bool? adult;
+  String? backdropPath;
   dynamic belongsToCollection;
-  int budget;
-  List<Genre> genres;
-  String homepage;
-  int id;
-  String imdbId;
-  String originalLanguage;
-  String originalTitle;
-  String overview;
-  double popularity;
-  String posterPath;
-  List<ProductionCompany> productionCompanies;
-  List<ProductionCountry> productionCountries;
-  String releaseDate;
-  int revenue;
-  int runtime;
-  List<SpokenLanguage> spokenLanguages;
-  String status;
-  String tagline;
-  String title;
-  bool video;
-  double voteAverage;
-  int voteCount;
+  int? budget;
+  List<Genre>? genres;
+  String? homepage;
+  int? id;
+  String? imdbId;
+  String? originalLanguage;
+  String? originalTitle;
+  String? overview;
+  double? popularity;
+  String? posterPath;
+  List<ProductionCompany>? productionCompanies;
+  List<ProductionCountry>? productionCountries;
+  String? releaseDate;
+  int? revenue;
+  int? runtime;
+  List<SpokenLanguage>? spokenLanguages;
+  String? status;
+  String? tagline;
+  String? title;
+  bool? video;
+  double? voteAverage;
+  int? voteCount;
 
   factory Mov.fromJson(Map<String, dynamic> json) => Mov(
         adult: json["adult"],
@@ -101,7 +101,7 @@ class Mov {
         "backdrop_path": backdropPath,
         "belongs_to_collection": belongsToCollection,
         "budget": budget,
-        "genres": List<dynamic>.from(genres.map((x) => x.toJson())),
+        "genres": List<dynamic>.from(genres!.map((x) => x.toJson())),
         "homepage": homepage,
         "id": id,
         "imdb_id": imdbId,
@@ -111,13 +111,13 @@ class Mov {
         "popularity": popularity,
         "poster_path": posterPath,
         "production_companies":
-            List<dynamic>.from(productionCompanies.map((x) => x.toJson())),
+            List<dynamic>.from(productionCompanies!.map((x) => x.toJson())),
         "production_countries":
-            List<dynamic>.from(productionCountries.map((x) => x.toJson())),
+            List<dynamic>.from(productionCountries!.map((x) => x.toJson())),
         "revenue": revenue,
         "runtime": runtime,
         "spoken_languages":
-            List<dynamic>.from(spokenLanguages.map((x) => x.toJson())),
+            List<dynamic>.from(spokenLanguages!.map((x) => x.toJson())),
         "status": status,
         "tagline": tagline,
         "title": title,
@@ -133,8 +133,8 @@ class Genre {
     this.name,
   });
 
-  int id;
-  String name;
+  int? id;
+  String? name;
 
   factory Genre.fromJson(Map<String, dynamic> json) => Genre(
         id: json["id"],
@@ -155,10 +155,10 @@ class ProductionCompany {
     this.originCountry,
   });
 
-  int id;
-  String logoPath;
-  String name;
-  String originCountry;
+  int? id;
+  String? logoPath;
+  String? name;
+  String? originCountry;
 
   factory ProductionCompany.fromJson(Map<String, dynamic> json) =>
       ProductionCompany(
@@ -182,8 +182,8 @@ class ProductionCountry {
     this.name,
   });
 
-  String iso31661;
-  String name;
+  String? iso31661;
+  String? name;
 
   factory ProductionCountry.fromJson(Map<String, dynamic> json) =>
       ProductionCountry(
@@ -204,9 +204,9 @@ class SpokenLanguage {
     this.name,
   });
 
-  String englishName;
-  String iso6391;
-  String name;
+  String? englishName;
+  String? iso6391;
+  String? name;
 
   factory SpokenLanguage.fromJson(Map<String, dynamic> json) => SpokenLanguage(
         englishName: json["english_name"],
