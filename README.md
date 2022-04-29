@@ -1,4 +1,4 @@
-# iti_movies
+# Appgain Movies Task
 
 A new Flutter application.
 
