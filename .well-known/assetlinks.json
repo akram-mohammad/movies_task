@@ -1,0 +1,9 @@
+[{
+  "relation": ["delegate_permission/common.handle_all_urls"],
+  "target": {
+    "namespace": "android_app",
+    "package_name": "com.example.iti_movies",
+    "sha256_cert_fingerprints":
+    ["98:AC:C1:B7:F3:48:36:DC:2C:E3:A6:AF:59:A8:B3:73:43:88:E0:56:27:4A:7F:1A:9A:B0:73:D2:17:75:02:C8"]
+  }
+}]
