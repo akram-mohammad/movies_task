@@ -21,5 +21,7 @@ adb shell am start movieapptask://open
 
 #### 2. Firebase Push Notifications:
 - You can push notifications directly from Firebase Messaging tap.
-- Use "Send Test Message" for high priority messages.
+- Use "Send Test Message" for sending messages.
 - Use the token given in the debug apk logs to send a test message.
+- Note that: when the the app is terminated, the message may take a while because its priority is not high.
+- This prority is only adjustable by using Firebase Cloud Functions to send high priority notifications.
