@@ -7,7 +7,7 @@ class MovieProvider extends ChangeNotifier {
   MovieRepository _movieRepository = MovieRepository();
 
   MovieProvider(id, index) {
-    debugPrint('id:::$id');
+    debugPrint('Movie ID :: $id');
     _getMovie(id, index);
   }
 

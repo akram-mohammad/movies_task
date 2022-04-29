@@ -34,7 +34,7 @@
         <key>CFBundleTypeRole</key>
         <string>Editor</string>
         <key>CFBundleURLName</key>
-        <string>moviestask.com</string>
+        <string>akram-mohammad.github.io/movies_task/</string>
         <key>CFBundleURLSchemes</key>
         <array>
         <string>customscheme</string>

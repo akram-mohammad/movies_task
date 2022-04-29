@@ -11,7 +11,14 @@ class DetailScreen extends StatefulWidget {
   final index;
   final movie;
   final saved;
-  const DetailScreen({Key key, this.id, this.index, this.movie, this.saved})
+  bool isDeepLinked;
+  DetailScreen(
+      {Key key,
+      this.id,
+      this.index,
+      this.movie,
+      this.saved,
+      this.isDeepLinked = false})
       : super(key: key);
 
   @override
@@ -62,10 +69,13 @@ class _DetailScreenState extends State<DetailScreen> {
                     ),
                   )
                 ],
-                leading: IconButton(
-                  icon: Icon(Icons.arrow_back),
-                  onPressed: () => Navigator.of(context).pop(widget.saved),
-                ),
+                leading: !widget.isDeepLinked
+                    ? IconButton(
+                        icon: Icon(Icons.arrow_back),
+                        onPressed: () =>
+                            Navigator.of(context).pop(widget.saved),
+                      )
+                    : SizedBox(),
               ),
               body: (movieProvider.movie != null)
                   ? LayoutBuilder(
@@ -147,7 +157,7 @@ class _DetailScreenState extends State<DetailScreen> {
         } else {
           return Scaffold(
             appBar: AppBar(
-              title: Text(widget.movie.title),
+              title: Text(widget.movie?.title ?? ''),
               leading: SizedBox(),
             ),
             body: Center(

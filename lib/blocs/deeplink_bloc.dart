@@ -5,12 +5,10 @@ import 'package:flutter/services.dart';
 
 class DeepLinkBloc extends Bloc {
   //Event Channel creation
-  static const mainStream =
-      const EventChannel('poc.deeplink.flutter.dev/events');
+  static const mainStream = const EventChannel('com.example.iti_movies/events');
 
   //Method channel creation
-  static const platform =
-      const MethodChannel('poc.deeplink.flutter.dev/channel');
+  static const platform = const MethodChannel('com.example.iti_movies/channel');
 
   StreamController<String> _stateController = StreamController();
 

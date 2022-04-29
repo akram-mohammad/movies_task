@@ -79,8 +79,11 @@ public class MainActivity extends FlutterActivity {
             @Override
             public void onReceive(Context context,Intent intent) { // NOTE: assuming intent.getAction() is Intent.ACTION_VIEW
                 String dataString = intent.getDataString();
-                events.error("UNAVAILABLE", "Link unavailable", null);
-                events.success(dataString);
+                if(dataString == null) {
+                    events.error("UNAVAILABLE", "Link unavailable", null);
+                } else {
+                    events.success(dataString);
+                }
             }
         };
     }
